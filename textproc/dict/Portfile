@@ -3,7 +3,7 @@
 PortSystem 1.0
 name			dict
 version			1.9.7
-revision		1
+revision		2
 categories		textproc spelling
 maintainers		nomaintainer
 license			GPL
@@ -25,9 +25,10 @@ depends_lib		lib:ltdl.3:libtool
 patchfiles		patch-configure
 
 configure.args		--without-local-zlib --with-etcdir=${prefix}/etc --mandir=${prefix}/share/man
+use_parallel_build		no
 build.type		gnu
-build.target		dict
-destroot.target		install.dict
+build.target		dict dictzip
+destroot.target		install.dict install.dictzip
 
 platform darwin {
 	patchfiles-append	patch-libmaa-config.guess patch-libmaa-config.sub patch-libmaa_parse.c patch-regex-ranlib
