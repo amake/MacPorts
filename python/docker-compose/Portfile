@@ -32,7 +32,7 @@ depends_lib         port:py${python.version}-yaml \
 
 # remove this after next release
 post-extract {
-    reinplace "s|requests >= .*|requests >= 2.6.1, < 2.10',|" ${worksrcpath}/setup.py
+    reinplace "s|requests >= .*|requests >= 2.6.1, <= 2.10',|" ${worksrcpath}/setup.py
 }
 
 livecheck.regex     archive/[join ${github.tag_prefix} ""](\[^"r\]+)${extract.suffix}
