@@ -30,6 +30,10 @@ depends_lib         port:py${python.version}-yaml \
                     port:py${python.version}-texttable \
                     port:py${python.version}-cached-property
 
+if {${python.version} < 34} {
+    depends_lib-append    port:py${python.version}-enum34
+}
+
 # remove this after next release
 post-extract {
     reinplace "s|requests >= .*|requests >= 2.6.1, <= 2.10',|" ${worksrcpath}/setup.py
