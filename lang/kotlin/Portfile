@@ -25,12 +25,14 @@ homepage            http://kotlinlang.org/
 checksums           rmd160  55d1b702467af0abdf0db980666635ae36794211 \
                     sha256  7f645b3914d0e435c0d7d26dc474684cebba6b5a99e9bbb3c23eef09140b72d4
 
+depends_run         bin:java:kaffe
+
 worksrcdir          kotlinc
 
 use_zip             yes
 use_configure       no
 
-build.cmd           true
+build {}
 
 pre-destroot {
     foreach f [glob ${worksrcpath}/bin/*.bat] {
@@ -53,5 +55,4 @@ destroot {
     }
 }
 
-universal_variant   no
-
+supported_archs     noarch
