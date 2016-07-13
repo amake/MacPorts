@@ -17,7 +17,7 @@ long_description    \
 license             PSF
 
 homepage            http://www.jython.org/
-master_sites        "http://search.maven.org/remotecontent?filepath=org/python/jython-installer/${version}"
+master_sites        http://search.maven.org/remotecontent?filepath=org/python/jython-installer/${version}
 fetch.type          hg
 hg.url              https://hg.python.org/jython
 hg.tag              v${version}
@@ -82,3 +82,7 @@ variant installer description {Use installer, rather than building from source} 
     }
 }
 default_variants +installer
+
+livecheck.type      regex
+livecheck.url       ${homepage}downloads.html
+livecheck.regex     "Jython (\\d+(?:\\.\\d+)*)"
