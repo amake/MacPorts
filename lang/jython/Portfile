@@ -38,19 +38,21 @@ pre-fetch {
     }
 }
 
+set bin_name        jython.py
+
 destroot {
     xinstall -m 755 -d ${destroot}${prefix}/share/java/
     copy ${worksrcpath}/dist \
         ${destroot}${prefix}/share/java/${name}
-    ln -s ../share/java/${name}/bin/jython.py ${destroot}${prefix}/bin/jython
 }
+
 post-destroot {
-    set packages ${destroot}${prefix}/share/java/${name}/cachedir/packages
-    xinstall -m 777 -d ${packages}
-    if {![file exists ${packages}/packages.idx]} {
-       system "touch ${packages}/packages.idx"
-    }
-    system "chmod a+w ${packages}/packages.idx"
+    set fp [open ${destroot}${prefix}/bin/${name} w]
+    puts $fp "#!/bin/sh"
+    puts $fp "${prefix}/share/java/${name}/bin/${bin_name} \\"
+    puts $fp "  -Dpython.cachedir=\"\$HOME/.jython_cachedir\" \"\$@\""
+    close $fp
+    system "chmod +x ${destroot}${prefix}/bin/${name}"
 }
 
 variant installer description {Use installer, rather than building from source} {
@@ -77,10 +79,11 @@ variant installer description {Use installer, rather than building from source} 
     build.args      -jar ${distname}${extract.suffix}
     build.post_args -s -d ${destroot}${prefix}/share/java/${name}
 
-    destroot {
-        ln -s ../share/java/${name}/bin/jython ${destroot}${prefix}/bin/jython
-    }
+    set bin_name    jython
+
+    destroot {}
 }
+
 default_variants +installer
 
 livecheck.type      regex
