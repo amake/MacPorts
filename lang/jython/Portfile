@@ -55,6 +55,11 @@ post-destroot {
     system "chmod +x ${destroot}${prefix}/bin/${name}"
 }
 
+pre-activate {
+    # Delete cache files left over from old installation
+    file delete -force -- ${prefix}/share/java/${name}/cachedir
+}
+
 variant installer description {Use installer, rather than building from source} {
     fetch.type      standard
     distname        ${name}-installer-${version}
