@@ -1,9 +1,10 @@
-# $Id: Portfile 112399 2013-10-22 09:08:51Z ryandesign@macports.org $
+# $Id: Portfile 151154 2016-08-08 22:33:06Z cal@macports.org $
 
 PortSystem          1.0
 
 name                jython
 version             2.7.0
+revision            1
 categories          lang python java
 platforms           darwin
 maintainers         nomaintainer
