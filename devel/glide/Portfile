@@ -20,8 +20,6 @@ long_description    Are you used to tools such as Cargo, npm, Composer, Nuget, \
                     Pip, Maven, Bundler, or other modern package managers? If \
                     so, Glide is the comparable Go tool.
 
-homepage            https://github.com/Masterminds/glide
-
 checksums           rmd160  72f7c148843dfd3ae4b08bb06430ad57f7567596 \
                     sha256  4d4dd73af930da1b47ac89bf4fc91be7b3fcd2e4cb7df69e63544f96593da9bc
 
