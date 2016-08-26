@@ -5,10 +5,6 @@ PortSystem          1.0
 PortGroup           github 1.0
 
 github.setup        Masterminds glide 0.12.0 v
-github.tarball_from releases
-supported_archs     i386 x86_64
-set arch            [expr {($tcl_platform(pointerSize) == 8) ? "amd64" : "386"}]
-distname            ${name}-v${version}-darwin-${arch}
 categories          devel
 platforms           darwin
 maintainers         nomaintainer
@@ -20,17 +16,22 @@ long_description    Are you used to tools such as Cargo, npm, Composer, Nuget, \
                     Pip, Maven, Bundler, or other modern package managers? If \
                     so, Glide is the comparable Go tool.
 
-checksums           rmd160  72f7c148843dfd3ae4b08bb06430ad57f7567596 \
-                    sha256  4d4dd73af930da1b47ac89bf4fc91be7b3fcd2e4cb7df69e63544f96593da9bc
-
-worksrcdir          darwin-${arch}
+depends_build       port:go
 use_configure       no
 
-build {}
+checksums           rmd160  ba19c257e0b9960710d4401d71c9c731ea95283e \
+                    sha256  c234061fcebeb4cb8b78d4a5aa3e7015163767484340be16a076a8aa2c340a00
+
+worksrcdir          ${workpath}/src/github.com/Masterminds/glide
+post-extract {
+    file mkdir [file dirname ${worksrcdir}]
+    move [glob ${workpath}/glide-*] ${worksrcdir}
+}
+
+build.cmd           make
+build.target        build
+build.env           GOPATH="${workpath}"
 
 destroot {
-    xinstall -W ${worksrcpath} glide ${destroot}${prefix}/bin
-    set docdir ${prefix}/share/doc/${name}
-    xinstall -d ${destroot}${docdir}
-    xinstall -m 0644 -W ${worksrcpath} LICENSE README.md ${destroot}${docdir}
+    xinstall ${worksrcpath}/glide ${destroot}${prefix}/bin
 }
