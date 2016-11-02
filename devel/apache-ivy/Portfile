@@ -48,6 +48,6 @@ destroot {
 }
 
 platform darwin {
-    build.env       JAVA_HOME=/Library/Java/Home
+    build.env       [exec /usr/libexec/java_home]
 }
 
