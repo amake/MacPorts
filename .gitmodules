@@ -1,0 +1,3 @@
+[submodule "macports-ports"]
+	path = macports-ports
+	url = git@github.com:amake/macports-ports.git
