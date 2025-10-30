@@ -1,12 +1,11 @@
-This is a scratch repo for updating
-[MacPorts](https://www.macports.org/) ports that I maintain or
-contribute to.
+This is a scratch repo for updating [MacPorts](https://www.macports.org/) ports
+that I maintain or contribute to.
 
 To use:
 
 1. Clone to e.g. `/Users/Shared/MacPorts` (as of MacPorts 2.11.6, under `$HOME`
    will cause permissions annoyances)
 2. Run `portindex` in the top of the working tree
-3. Edit `/opt/local/etc/macports/sources.conf` and add the location of
-the working tree, e.g. `file:///Users/<username>/MacPorts`, *above*
-the default source
+3. Edit `/opt/local/etc/macports/sources.conf` and add the location of the
+working tree, e.g. `file:///Users/<username>/MacPorts`, *above* the default
+source
